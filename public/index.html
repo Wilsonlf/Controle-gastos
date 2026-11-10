@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Controle de Gastos</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>💰 Controle de Gastos</h1>
+    <div class="mes-nav">
+      <button id="mes-anterior" aria-label="Mês anterior">‹</button>
+      <input type="month" id="mes">
+      <button id="mes-proximo" aria-label="Próximo mês">›</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="card total">
+      <span>Total do mês</span>
+      <strong id="total">R$ 0,00</strong>
+    </section>
+
+    <section class="card">
+      <h2 id="form-titulo">Novo gasto</h2>
+      <form id="form-gasto">
+        <input type="hidden" id="gasto-id">
+        <input id="descricao" placeholder="Descrição (ex: Mercado)" required>
+        <input id="valor" type="number" step="0.01" min="0.01" placeholder="Valor (R$)" required>
+        <input id="data" type="date" required>
+        <select id="categoria"></select>
+        <div class="botoes">
+          <button type="submit" id="btn-salvar">Adicionar</button>
+          <button type="button" id="btn-cancelar" class="secundario" hidden>Cancelar</button>
+        </div>
+        <p id="erro" class="erro" hidden></p>
+      </form>
+    </section>
+
+    <section class="card">
+      <h2>Por categoria</h2>
+      <div id="grafico"><p class="vazio">Nenhum gasto neste mês.</p></div>
+    </section>
+
+    <section class="card">
+      <h2>Gastos</h2>
+      <ul id="lista"></ul>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

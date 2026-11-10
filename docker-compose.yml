@@ -1,0 +1,25 @@
+name: controle-gastos
+
+services:
+  app:
+    build: .
+    image: controle-gastos:latest
+    container_name: controle-gastos
+    restart: unless-stopped 
+    ports:
+      - "3000:3000"
+    environment:
+      TZ: America/Sao_Paulo
+      APP_PASSWORD: ${APP_PASSWORD:-troque_esta_senha}
+    volumes:
+      - /DATA/AppData/controle-gastos:/data
+
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    container_name: cloudflared
+    restart: unless-stopped
+    command: tunnel --no-autoupdate run
+    environment:
+      TUNNEL_TOKEN: ${TUNNEL_TOKEN}
+    depends_on:
+      - app
