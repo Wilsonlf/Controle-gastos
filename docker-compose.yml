@@ -13,16 +13,3 @@ services:
       APP_PASSWORD: ${APP_PASSWORD:-troque_esta_senha}
     volumes:
       - /DATA/AppData/controle-gastos:/data
-
-  cloudflared:
-    image: cloudflare/cloudflared:latest
-    container_name: cloudflared
-    restart: unless-stopped
-    command: tunnel --no-autoupdate run
-    dns:
-      - 1.1.1.1
-      - 8.8.8.8
-    environment:
-      TUNNEL_TOKEN: ${TUNNEL_TOKEN}
-    depends_on:
-      - app
